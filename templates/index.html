@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<title>个性化元搜索 - Personalized Search</title>
+</head>
+<body>
+
+<script language="javascript" type="text/javascript">
+
+function checkEnter()
+{
+	if(event.keyCode==13)
+		checkempty();
+}
+
+function checkempty()
+{
+	var input = document.form1.topic.value;
+	if (input=="")
+	{
+		alert("请输入查询！");
+		return false;
+	}
+	while(input.indexOf(" ") != -1 ){
+		input = input.replace( " ", ";amp" );
+    }
+	document.form1.topic.value = input;
+	return true;
+}
+
+</script>
+
+
+			<div align="center"><br><br><br><img src="./logo.gif" align="center"></div>
+			<br>
+			<form name="form1" method="post" action="/pms/control/" onsubmit="return checkempty();"> 
+			<div align="center"><input name="topic" type="text" value="" size="50" maxlength=127 ></div>		
+			<input name="g_page" type="hidden" value="no" >
+			<input name="g_firstvisit" type="hidden" value="yes" >
+			<input name="g_firstbaidu" type="hidden" value="yes" >
+			<div align="center"><input type="submit" name="submit" value="个性化搜索""></div>
+			</form>
+			<br><br><br><br><br><br>
+
+	<br><br><br>
+	<p align="center"><font size="2">&copy;2009 - <a href = "privacy.jsp">Privacy</a> - <a href = "http://ir.hit.edu.cn/">哈工大信息检索研究中心 - HIT CIR</a></font></p>
+
+</table>
+</body>
+</html>
