@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>提个建议</title>
+</head>
+  <style type="text/css">
+.mymessageblk3{width:75px; height:24px;background:url(/medias/img/home/clubhome_1051139.jpg);}
+.mymessageblk3 input{ color:#93ca48;width:75px; height:24px;border:none; background:url(/medias/img/home/clubhome_1051139.jpg);}
+
+.mymessageblk2{ float:left;background:#006633; width:43px; height:24px;background:url(/medias/img/home/clubhome_051164.jpg);}
+.mymessageblk2 input{color:#93ca48;   width:43px; height:24px;border:none; background:url(/medias/img/home/clubhome_051164.jpg);}
+		</style>
+<body>
+<div style="padding-left:10PX;">
+<br />
+
+  <form action="/picasso/upload/" method="post" name="logo_form" enctype="multipart/form-data">
+    <input type="hidden" name="thumbsize" value="100,100"/>
+    <input type="hidden" id="forward" name="forward" value=""/>
+    <input type="file" name="upload" />
+    <br />
+	 <div style="float:left; padding-top:6PX " >
+                <div style="float:left; "></div>
+                <div class="mymessageblk2">  <input type="submit" name="submit" id="submit" value="上传" /></div>
+                <div class="bn3"></div>
+    </div>
+              
+              <div style="float:left; padding-left:10PX; padding-top:6PX ">
+                <div style="float:left;"></div>
+                <div class="mymessageblk2"><input type="button" name="cancel" id="cancel" value="取消" /></div>
+                <div class="bn3"></div>
+              </div>
+    
+    
+  </form>
+</div>
+<script type="text/javascript" src="/medias/js/jquery-1.2.6.js"></script>
+<script type="text/javascript" src="/medias/js/jquery-form.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {	
+		$('#forward').val('/login/change_logo/__parent=' + parent.document.URL);			
+		$('#submit').click(function() {
+			//parent.close_dialog();
+			//parent.submit_values('/login/change_logo/', $('#logo_form').formToArray());
+		});
+		
+		$('#cancel').click(function() {
+			parent.close_dialog();
+		});
+	});
+</script>
+</body>
+</html>

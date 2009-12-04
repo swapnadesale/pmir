@@ -1,0 +1,17 @@
+{% block content %}
+  用户登陆
+  {% if fail %}
+    <p class="error">您输入的用户名和密码不匹配请重新输入</p>
+  {% endif %}
+
+  <form action="/login/input" method="post">
+    <label for="username">用户名:</label>
+    <input type="text" name="username" value="" id="username">
+    <label for="password">密码:</label>
+    <input type="password" name="password" value="" id="password">
+    <input type="submit" value="登陆" />
+    <input type="hidden" name="next" value="{{ next|escape }}" />
+  </form>
+  
+  <div class="link7">如果您还不是本网站用户，请点击<a href="/login/register/" >注册</a></div>
+{% endblock %}

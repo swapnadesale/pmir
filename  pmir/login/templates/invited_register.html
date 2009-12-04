@@ -1,0 +1,142 @@
+{% load club_filter %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="/medias/css/index.css" rel="stylesheet" type="text/css" />
+<title>邀请确认</title>
+</head>
+<body>
+<div id="homefame">
+  <div id="indexheard">
+    <div class="indexheardlogo">
+      <div class="hl0">
+        <form action="/search/" method="post">
+          <div class="link2">
+            <input type="text" id="" name="q" value="">
+          </div>
+          <div class="link3">
+            <input class="okButton" type="submit" value="搜索" />
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="indexfamea">
+    <div id="homefame">
+      <!--中部内容开始-->
+      <div class="fame02x">
+        <div class="mySocietiescfy"> {% with club_inviter as club%}
+          <div class="mySocietiescfry" style="float:left;" >
+            <div style="color: #000066;" >{{ club.name }}邀请您加入，请在右侧设置您的登录信息</div>
+            <div style="padding-top:8px; color:#666666; clear:both;" >
+              <div style="float:left;"class="indexfamel061"><img src="{{ club.logo_path|default:"/medias/img/club_default.gif" }}" alt="" width="100" height="100"/></div>
+              <div style="float:left; padding-left:15px; padding-top:10px; width:200px;">{{club.name}}地点：{{club.university}}（{{club.city}}）<br />
+                创建时间：{{club.setup_time|date:"Y年n月"}}<br />
+                共有会员数：{{ club.member_number }}人</div>
+            </div>
+          </div>
+          {% endwith %}
+          <div>
+            <table >
+              <form id="invited_register" name="invited_register" method="post" action="/login/invited_register/">
+                <input type="hidden" value="{{user.id}}" name="id" />
+                <tr>
+                  <td> E-mail：</td>
+                  <td><input id="email" name="email_username" type="text" value="{{user.username}}" maxlength="30" style="width:180px;" disabled="disabled">
+                    <br />
+                  </td>
+                </tr>
+                <tr>
+                  <td>密码：</td>
+                  <td><input id="password" name="password" type="password" maxlength="30"  style="width:180px;">
+                    <br />
+                    <div id="pw_error" style="display:none;">密码长度至少为6位！</div></td>
+                </tr>
+                <tr>
+                  <td>重复密码：</td>
+                  <td><input id="passwordagain" name="passwdagain" type="password" maxlength="30"  style="width:180px;">
+                    <br />
+                    <div id="pwa_error" style="display:none;">两次密码不一致，请重新确认！</div></td>
+                </tr>
+                <tr>
+                  <td>真实姓名：</td>
+                  <td><input id="realname" name="realname" type="text" maxlength="75" value="{{user.first_name}}"  style="width:180px;">
+                    <br />
+                    <div id="rn_error" style="display:none;">真实姓名不能为空！</div></td>
+                </tr>
+                <tr>
+                  <td align="right"><input id="sign_treaty" name="sign_treaty" type="checkbox" value="" checked="checked" />
+                  </td>
+                  <td >我已经阅读过使用条款
+                    <div id="treaty_error" style="display:none;">请先仔细阅读使用条款！</div>
+                    <div><a id="submit" href="#" ><img  src="/medias/img/index/heardindex05.jpg" border="0" /></a></div></td>
+                </tr>
+              </form>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="indexfoot">
+    <div class="indexfoot1"> Copyright 2008 club home beta<br />
+      京ICP备000000001号 </div>
+    <div class="indexfoot2"> <span><a href="#" >隐私声明</a></span> <span><a href="#" >帮助</a></span> <span><a href="#" >加入收藏</a></span> <span><a href="#" >联系我们</a></span> <span><a href="#" >对CH说</a></span> <span><a href="/login/register/1/">内部注册</a></span> </div>
+  </div>
+</div>
+<script type="text/javascript" src="/medias/js/jquery-1.2.6.js"></script>
+<script language="javascript">		
+	function check_form()
+	{
+		$('#pw_error').hide();
+		$('#pwa_error').hide();
+		$('#rn_error').hide();
+		$('#treaty_error').hide();
+		
+		if($('#password').val().length < 6)
+		{
+			$('#pw_error').show();
+			$('#password').focus();
+			return false;
+		}
+		
+		if($('#password').val() != $('#passwordagain').val())
+		{
+			$('#pwa_error').show();
+			$('#passwordagain').focus();
+			return false;
+		}
+		
+		if($('#realname').val() == '')
+		{
+			$('#rn_error').show();
+			$('#realname').focus();
+			return false;
+		}
+		
+		if(!$('#sign_treaty').attr('checked'))
+		{
+			$('#treaty_error').show();
+			return false;
+		}
+		
+		return true;
+	}
+	
+	$('#submit').click(
+		function(event){
+			event.stopPropagation();
+			event.preventDefault();
+			
+			if(check_form())
+			{
+				$('#invited_register').submit();
+			}
+			
+		}
+	)
+	
+</script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<html>
+<head>
+<META content="text/html; charset=UTF-8" http-equiv=content-type>
+<SCRIPT type="text/javaScript">
+    function checkEnter()
+    {
+        if(event.keyCode==13) 
+        {
+            setPage1();
+        }
+    }
+
+    function setPage1()
+    {  
+        var input = document.inputform1.elements["query"].value;
+        if (input=="")
+        {
+			alert("请输入查询！");
+			return false;
+		}
+        
+        general = document.inputform1.elements["GeneralSearch"].options[window.document.inputform1.elements["GeneralSearch"].selectedIndex].value;
+        optional = document.inputform1.elements["OptionalSearch"].options[window.document.inputform1.elements["OptionalSearch"].selectedIndex].value;
+        //if (general == optional)
+        //{
+        //   alert("通用引擎与对比引擎不可相同！");
+        //    return false;
+        //}
+        return true;
+    }
+    
+    function changeLeftWindow()
+    {
+        var input = document.inputform1.elements["query"].value;
+        if (input=="")
+        {
+    		alert("请输入查询！");
+    		return false;
+    	}
+        optional = document.inputform1.elements["OptionalSearch"].options[window.document.inputform1.elements["OptionalSearch"].selectedIndex].value;
+        general = document.inputform1.elements["GeneralSearch"].options[window.document.inputform1.elements["GeneralSearch"].selectedIndex].value;
+        //if (general == optional)
+        //{
+        //    alert("通用引擎与对比引擎不可相同！");
+        //    if (general == "google")
+        //        document.inputform1.elements['GeneralSearch'].value = "baidu";;
+        //    return false;
+       // }
+        if (general == "baidu" && optional=="google")   
+        	  parent.document.getElementById("left").contentWindow.location.href = "/website/" + general + "/?q=" + document.inputform1.elements["query"].value;
+        else if (general == "google" && optional == "google")
+        		parent.document.getElementById("left").contentWindow.location.href = "/website/" + general + "/?q=" + document.inputform1.elements["query"].value ;
+        else
+        	  parent.document.getElementById("left").contentWindow.location.href = "/website/" + general + "/?q=" + document.inputform1.elements["query"].value + "&pir=" + optional;
+        //changeRightWindow();
+        return true;
+    }
+    
+    function changeRightWindow()
+    {
+        optional = document.inputform1.elements["OptionalSearch"].options[window.document.inputform1.elements["OptionalSearch"].selectedIndex].value;
+        general = document.inputform1.elements["GeneralSearch"].options[window.document.inputform1.elements["GeneralSearch"].selectedIndex].value;
+        optional = document.inputform1.elements["OptionalSearch"].options[window.document.inputform1.elements["OptionalSearch"].selectedIndex].value;
+        general = document.inputform1.elements["GeneralSearch"].options[window.document.inputform1.elements["GeneralSearch"].selectedIndex].value;
+        //if (general == optional)
+        //{
+        //    alert("通用引擎与对比引擎不可相同！");
+        //    return false;
+        //}
+     
+        parent.document.getElementById("right").contentWindow.location.href = "/website/" + optional + "/?engine=" + general + "&q=" + document.inputform1.elements["query"].value; // q is only for google
+        return true;
+    }
+
+</SCRIPT>
+</head>
+<div align="left" nowrap color="green"><font size="2" color="blue">欢迎<a href="/website/personal/" target="_parent">{{username}}</a>&nbsp;&nbsp;</font><a href="/website/index/" target="_parent"><font size="2" color="green">首页</font></a></td></div>
+<form name="inputform1" method="post" action="/website/inputpage/" onsubmit="return setPage1()" onkeydown = "return checkEnter()">
+    <div align="center">
+	
+    <input name="query" type="text" value="{{q|safe}}" size="50" maxlength=150 >
+	<input type="submit" name="search" value="搜索">
+	<font color="green" size=2>&nbsp;&nbsp;&nbsp;通用引擎</font>
+    <select name="GeneralSearch" onchange="return changeLeftWindow();">
+        <option value="baidu" selected="selected">Baidu</option>
+        <option value="google">Google</option>
+    </select>
+	<font color="green" size=2>&nbsp;&nbsp;&nbsp;对比引擎</font>
+    <select name="OptionalSearch" onchange="return changeRightWindow();">
+	    <option value="google" selected="selected">Google</option>
+	    <option value="psudoFeedback">伪相关反馈</option>
+        <option value="userFeedback">用户隐式反馈</option>
+	</select>
+    </div>
+</form>
+{% if baidugoogle %}
+<script>
+    //alert(parent.document.getElementById());
+    parent.document.getElementById('left').contentWindow.location = "/website/baidu/?q=" + document.inputform1.elements["query"].value;
+    //alert("location");// + parent.document.getElementById('left').contentWindow.location);
+    parent.document.getElementById('right').contentWindow.location.href = "/website/google/?q=" + document.inputform1.elements["query"].value;
+</script>
+{% endif %}
+{% if baidupir %}
+<script>
+    //alert(document.inputform1.elements['GeneralSearch']);
+    document.inputform1.elements['GeneralSearch'].value = "baidu";
+    document.inputform1.elements['OptionalSearch'].value = "{{pir}}";
+    parent.document.getElementById('left').contentWindow.location.href = "/website/baidu/?q=" + document.inputform1.elements["query"].value + "&pir=" + "{{pir}}";
+</script>
+{% endif %}
+{% if googlepir %}
+<script>
+    //alert("googlepir");
+    // 兼容firefox
+    document.inputform1.elements['GeneralSearch'].value = "google";
+    document.inputform1.elements['OptionalSearch'].value = "{{pir}}";
+    parent.document.getElementById('left').contentWindow.location.href = "/website/google/?q=" + document.inputform1.elements["query"].value + "&pir=" + "{{pir}}";
+</script>
+{% endif %}
+</body>
+</html>
+

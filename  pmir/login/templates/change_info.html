@@ -1,0 +1,515 @@
+{% load login_filter %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//ZH-CN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>自由度</title>
+<link href="/medias/css/inbox.css" rel="stylesheet" type="text/css" />
+<link href="/medias/css/header.css" rel="stylesheet" type="text/css" />
+<style type="text/css">						
+			
+		</style>
+</head>
+<body onLoad="set_value()">
+{% include "header.html" %}
+<div id="homefame">
+  <!--左部内容开始-->
+  {% include "sidebar_user.html" %}
+  <!--左部内容开始-->
+  <!--右部内容开始-->
+  <div class="fame02">
+    <div class="mySocietiesvb">
+      <div class="mySocieties01">
+        <div class="mySocieties01l">个人信息修改</div>
+      </div>
+    </div>
+    <div class="mymessageb">
+      <div class="mymessageb00avuut">
+        <div class="touxiang">
+          <div class="touxiang1"><img src="{{user.profile.logo_path|default:"/medias/img/boy_photo.gif"}}" alt="" width="100" height="100"/></div>
+          <div class="touxiang2">
+            <div class="bn">
+              <div class="bn1"><img  src="/medias/img/index/bn1.jpg" border="0" /></div>
+              <div class="bn2"><a href="javascript:upload_logo();">更换头像</a></div>
+              <div class="bn3"><img  src="/medias/img/index/bn3.jpg" border="0" /></div>
+            </div>
+          </div>
+        </div>
+        <div class="xiugaineirong">
+          <form id="info" name="info" method="post">
+            {% if do_info %}
+
+			<div class="xiugaineirong1dio font03h" >
+            <div  id="do_info" style="font-size:14px; padding-left:20px; font-weight:bold; padding-top:10px; color: #FF0000;">{{ do_info }}<a href="/user/">　返回</a></div>
+           </div><br>
+<br>
+
+            {% endif %}
+            <div class="xiugaineirong1" style="clear:both;">
+              <div class="xiugaineirong1a"></div>
+              <div class="xiugaineirong1b">更改邮箱地址</div>
+              <div>
+                <div class="xiugaineirong1c">
+                  <input id="email" name="email_username" type="text" value="{{user.username}}" maxlength="30" >
+                </div>
+                <div class="xiugaineirong1d" id="email_error">{{change_username_info}}</div>
+              </div>
+            </div>
+            <div class="xiugaineirong1">
+              <div class="xiugaineirong1a"></div>
+              <div class="xiugaineirong1b">修改真实姓名</div>
+              <div>
+                <div class="xiugaineirong1c">
+                  <input id="realname" name="realname" value="{{user.first_name}}" type="text" maxlength="75">
+                </div>
+                <div class="xiugaineirong1d" id="rn_error"></div>
+              </div>
+            </div>
+			
+			
+			  <div class="xiugaineirong1b1">修改密码：</div>
+			 <div style="overflow:hidden;border:#A1A1A1 2px solid;  background-color:#F7F7F7; width:520px; padding-top:10px; padding-left:10px;">
+			 <div style="overflow:hidden;">
+            <div class="xiugaineirong2">
+              <div class="xiugaineirong1a"></div>
+              <div class="xiugaineirong1b11">旧密码</div>
+              <div class="xiugaineirong1d21">
+                <input id="oldpassword" name="oldpassword" type="password">
+              </div>
+              <div class="xiugaineirong1d" id="opw_error">{{pw_info}}</div>
+            </div>
+            <div class="xiugaineirong2">
+              <div class="xiugaineirong1a"></div>
+              <div class="xiugaineirong1b11">新密码</div>
+              <div class="xiugaineirong1d21">
+                <input id="password" name="password" type="password">
+              </div>
+              <div class="xiugaineirong1d" id="pw_error"></div>
+            </div>
+            <div class="xiugaineirong2">
+              <div class="xiugaineirong1a"></div>
+              <div class="xiugaineirong1b11">重复新密码</div>
+              <div class="xiugaineirong1d21">
+                <input id="passwordagain" name="passwordagain" type="password">
+              </div>
+              <div class="xiugaineirong1d"  id="pwa_error"></div>
+            </div>
+			</div>
+			</div>
+		
+
+            <div class="xiugaineirong2" style="padding-top:10px;">
+              <div class="xiugaineirong1a"></div>
+              <div class="xiugaineirong1b1">性别</div>
+              <div class="xiugaineirong1d2">
+                <input name="sex" type="radio" value="M" {% if user.profile.sex %}checked="checked"{% endif %} />
+              </div>
+              <div class="xiugaineirong1d1">男</div>
+              <div class="xiugaineirong1d2">
+                <input name="sex" type="radio" value="F" {% ifnotequal user.profile.sex null %}{% if not user.profile.sex %}checked="checked"{% endif %}{% endifnotequal %} />
+              </div>
+              <div class="xiugaineirong1d1">女</div>
+            </div>
+            <div class="xiugaineirong2">
+              <div class="xiugaineirong1a"></div>
+              <div class="xiugaineirong1b11">生日</div>
+              <div class="xiugaineirong1d21">
+                <select name="birth_year" id="birth_year" style="width:80px;" onChange="change_time();">
+                  <option value="">选择年</option>
+                  
+                                {% for year in years %}
+                                    
+                  <option value="{{year}}">{{year}}</option>
+                  
+                                {% endfor %}
+                                
+                </select>
+                年
+                <select name="birth_month" id="birth_month" style="width:80px;" onChange="change_time();">
+                  <option value="">选择月</option>
+                  
+                                {% for month in months %}
+                                    
+                  <option value="{{month}}">{{month}}</option>
+                  
+                                {% endfor %}
+                                
+                </select>
+                月　
+                <select name="birth_day" id="birth_day" style="width:80px;">
+                  <option value="">选择日</option>
+                </select>
+                日 </div>
+            </div>
+            <div class="xiugaineirong2">
+              <div class="xiugaineirong1a"></div>
+              <div class="xiugaineirong1b11">现居住地</div>
+              <div class="xiugaineirong1d21">
+                <select name="habitat_province" id="habitat_province" style="width:100px;" onChange="reload_options(this.selectedIndex, 'habitat_city', loc);">
+                  <option value="">请选择</option>
+                  
+  {% for location in locations %} 
+  
+                  <option value="{{ location.province }}">{{ location.province }}</option>
+                  
+  {% endfor %}
+  
+                </select>
+                <select name="habitat_city" id="habitat_city" style="width:100px;">
+                </select>
+              </div>
+            </div>
+            <div class="xiugaineirong2">
+              <div class="xiugaineirong1a"></div>
+              <div class="xiugaineirong1b11">家乡</div>
+              <div class="xiugaineirong1d21">
+                <select name="hometown_province" id="hometown_province" style="width:100px;" onChange="reload_options(this.selectedIndex, 'hometown_city', loc);">
+                  <option value="">请选择</option>
+                  
+  {% for location in locations %} 
+  
+                  <option value="{{ location.province }}">{{ location.province }}</option>
+                  
+  {% endfor %}
+  
+                </select>
+                <select name="hometown_city" id="hometown_city" style="width:100px;">
+                </select>
+              </div>
+            </div>
+            <div class="xiugaineirong2rt">
+              <div class="xiugaineirong1b11">学校</div>
+              <div class="xiugaineirong1d21">
+                <select name="school_province" id="school_province" style="width:100px;" onChange="reload_options(this.selectedIndex, 'school', sch);">
+                  <option value="">请选择</option>
+                  
+                            {% for location in locations %} 
+  							
+                  <option value="{{ location.province }}">{{ location.province }}</option>
+                  
+  							{% endfor %}
+                            
+                </select>
+                <select name="school" id="school" style="width:140px;">
+                </select>
+                <input type="text" name="" id="school_alternate" style="display:none" size="18" value="{{user.profile.school}}" />
+　
+入学年份
+                <select name="school_enrollment" id="school_enrollment" style="width:100px;">
+                  <option value="">请选择</option>
+                  
+                              {% for year in years %}
+                              	
+                  <option value="{{year}}">{{year}}</option>
+                  
+                              {% endfor %}
+                              
+                </select>
+              </div>
+            </div>
+            <div class="xiugaineirong2rt1">
+              <div class="xiugaineirong1b11">公司</div>
+              <div class="xiugaineirong1d21">
+                <input name="company" type="text" value="{{user.profile.company}}" style="width:240px;">
+　
+入职年份
+                <select name="company_enrollment" id="company_enrollment" style="width:100px;">
+                  <option value="">请选择</option>
+                  
+					{% for year in years %}
+                          
+                  <option value="{{year}}">{{year}}</option>
+                  
+                    {% endfor %}
+  
+                </select>
+              </div>
+            </div>
+            <div class="xiugaineirong2rt5">
+              <div class="xiugaineirong1b11">兴趣爱好</div>
+              <div class="xiugaineirong1d21">
+                <div class="yuyy">
+                  <textarea name="hobby" cols="" rows="" style="width:410px; height:40px;">{{user.profile.hobby}}</textarea>
+                </div>
+              </div>
+              <div class="xiugaineirong1d21tt"> </div>
+            </div>
+            <div class="touxiang6"> <span style="float:left;">
+              <div class="bn">
+                <div class="bn1"><img  src="/medias/img/index/bn1.jpg" border="0" /></div>
+                <div class="bn2"><a id="submit" href="#">确定</a></div>
+                <div class="bn3"><img  src="/medias/img/index/bn3.jpg" border="0" /></div>
+              </div>
+              </span> <span style="float:left; padding-left:10px;">
+              <div class="bn">
+                <div class="bn1"><img  src="/medias/img/index/bn1.jpg" border="0" /></div>
+                <div class="bn2"><a href="/login/change_info/">重填</a></div>
+                <div class="bn3"><img  src="/medias/img/index/bn3.jpg" border="0" /></div>
+              </div>
+              </span> </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="mymessagecx"> </div>
+  </div>
+</div>
+{% include "foot_user.html" %}
+<script type="text/javascript" src="/medias/js/date.js"></script>
+<script language="javascript">
+	
+	function set_select_value(id, value)
+	{
+		var select_element=document.getElementById(id);
+  		for (i=0;i<select_element.length;i++)
+		{
+			if(select_element.options[i].value == value)
+			{
+				select_element.selectedIndex = i;
+				return i;
+			}
+		}
+		
+		return 0;
+
+	}
+	
+	function set_checkbox(id)
+	{
+		var checkbox_element=document.getElementById(id);
+		if(checkbox_element)
+		{	
+			checkbox_element.checked = true;
+		}
+		else
+		{
+			var ext_element=document.getElementById("ext_hobby");
+			ext_element.value += id + "#";
+		}
+	}
+	
+	var loc = Array();
+	
+	loc[0] = Array();
+	loc[0][0] = '请选择';
+	{% for location in locations %}
+		loc[{{ forloop.counter }}] = Array();
+		{% for city in locations|get_city_list:forloop.counter0 %}
+			loc[{{ forloop.parentloop.counter }}][{{ forloop.counter0 }}] = "{{ city|first }}";
+		{% endfor %}
+	{% endfor %}
+	
+	var sch = Array();
+	
+	sch[0] = Array();
+	sch[0][0] = '请选择';
+	{% for school_list in schools %}
+		sch[{{ forloop.counter }}] = Array();
+		{% for school in school_list %}
+			sch[{{ forloop.parentloop.counter }}][{{ forloop.counter0 }}] = "{{ school|first }}";
+		{% endfor %}
+	{% endfor %}
+	
+	function reload_options(selected_id, element_id, data)
+	{
+		var option = document.getElementById(element_id);
+		var length = option.length;
+		while(length-- > 0)
+		{
+			option.remove(0);
+		}
+
+		if(element_id=="school" && data[selected_id].length==0)
+		{
+			$('#school').hide();
+			$('#school').attr('name', '');
+			$('#school_alternate').show();
+			$('#school_alternate').attr('name', 'school');
+		}
+		else
+		{
+			$('#school').show();
+			$('#school').attr('name', 'school');
+			$('#school_alternate').hide();
+			$('#school_alternate').attr('name', '');
+			
+			for(i=0;i<data[selected_id].length;i++)
+			{
+				var y=document.createElement('option');
+				y.text=data[selected_id][i];
+				if(y.text == '请选择')
+				{
+					y.value = '';
+				}
+				else
+				{
+					y.value = y.text;
+				}
+				try
+				{
+					option.add(y,null); // standards compliant
+				}
+				catch(ex)
+				{
+					option.add(y); // IE only
+				}
+			}
+		}
+
+	}
+	
+	function set_value()
+	{
+		{% if user.profile.birth_date %}
+		set_select_value("birth_year", {{ user.profile.birth_date|date:"Y" }});
+		set_select_value("birth_month", {{ user.profile.birth_date|date:"n" }});
+		change_time({{ user.profile.birth_date|date:"j" }});
+		{% endif %}
+		
+		{% ifnotequal habitat_province '' %}
+		var pid1 = set_select_value("habitat_province", '{{ user.profile.habitat_province }}');
+		reload_options(pid1, "habitat_city", loc);
+		set_select_value("habitat_city", "{{ user.profile.habitat_city }}");
+		{% endifnotequal %}
+		
+		{% ifnotequal hometown_province '' %}
+		var pid2 = set_select_value("hometown_province", "{{ user.profile.hometown_province }}");
+		reload_options(pid2, "hometown_city", loc);
+		set_select_value("hometown_city", "{{ user.profile.hometown_city }}");
+		{% endifnotequal %}
+		
+		{% ifnotequal school_province '' %}
+		var pid3=set_select_value("school_province", "{{ user.profile.school_province }}");
+		reload_options(pid3, "school", sch);
+		set_select_value("school", "{{ user.profile.school }}");
+		set_select_value("school_enrollment", "{{ user.profile.school_enrollment_year }}");
+		{% endifnotequal %}
+		//set_select_value("company", "{{ user.profile.company }}");
+		{% ifnotequal company_enrollment '' %}
+		set_select_value("company_enrollment", "{{ user.profile.company_enrollment_year }}");
+		{% endifnotequal %}
+
+	}
+</script>
+<script type="text/javascript">
+	function upload_logo() {
+		open_dialog('/login/change_logo/', '上传头像', 420, 320);
+	}	  
+</script>
+<script type="text/javascript">
+	function change_time(day) {
+		var year = $("#birth_year").val();
+		var month = $("#birth_month").val();
+		
+		var day_select = $("#birth_day");
+		var day_options = new Array();
+		
+		if(year=='' || month=='')
+		{
+			day_options[0]='<option value="">选择日</option>';
+			day_select.html(day_options.join(''));
+			return;
+		}
+		
+		if(!day)
+		{
+			day = day_select.val();
+		}
+
+		var days = get_days(year, month);
+		
+		for(var i = 1; i <= days; ++i) {
+			if(i == day) {
+				day_options[i] = ('<option selected="true">'+i+'</option>');
+			}
+			else {
+				day_options[i] = ('<option>'+i+'</option>');
+			}
+		}
+		day_select.html(day_options.join(''));
+	}
+	
+	function is_email(str)
+	{
+		var email_filter=/^([A-Za-z0-9.%-_])+@([A-Za-z0-9.%-_])+(\.[A-Za-z]{2,4})$/;
+		return email_filter.test(str);
+	}
+	
+	function check_form()
+	{
+		$('#do_info').html("");
+		$('#email_error').html("");
+		$('#opw_error').html("");
+		$('#pw_error').html("");
+		$('#pwa_error').html("");
+		$('#rn_error').html("");
+		
+		if (!is_email($('#email').val()))
+		{
+			$('#email_error').html("Email将作为登录用户名和找回密码使用，请如实填写！");
+			$('#email').focus();
+			return false;
+		}
+		
+		if($('#realname').val() == '')
+		{
+			$('#rn_error').html("请输入真实姓名！");
+			$('#realname').focus();
+			return false;
+		}
+		
+		if($('#password').val() != "" && $('#password').val().length < 6)
+		{
+			$('#pw_error').html("密码长度少于6位！");
+			$('#password').focus();
+			return false;
+		}
+		
+		if($('#password').val() != $('#passwordagain').val())
+		{
+			$('#pwa_error').html("两次密码不一致，请重新确认！");
+			$('#passwordagain').focus();
+			return false;
+		}
+		
+		return true;
+	}
+	
+	$('#email').blur(
+		function(){
+			if(is_email($(this).val()))
+			{
+				$('#email_error').html("");
+				if($(this).val() != '{{user.username}}')
+				{
+					$('#oldpassword').focus();
+					$('#opw_error').html('您修改了邮箱地址，请输入密码确认！');
+				}
+				else if($('#opw_error').html()=='您修改了邮箱地址，请输入密码确认！')
+				{
+					$('#opw_error').html('');
+				}
+			}
+			else
+			{
+				$('#email_error').html("请正确输入Email地址！");
+				$('#email').focus();
+			}
+		}
+	)
+	
+	$('#submit').click(
+		function(event){
+			event.stopPropagation();
+			event.preventDefault();
+			
+			if(check_form())
+			{
+				$('#info').submit();
+			}
+			
+		}
+	)
+</script>
+</body>
+</html>
