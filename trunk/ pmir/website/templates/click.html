@@ -1,0 +1,15 @@
+<html>
+<body>
+click
+<script>
+    optional = parent.document.getElementById("top").contentWindow.document.inputform1.elements["OptionalSearch"].value;
+    general = parent.document.getElementById("top").contentWindow.document.inputform1.elements["GeneralSearch"].value;
+    //alert(optional);
+    //alert(general);
+    if (optional == "userFeedback")
+    {
+        parent.document.getElementById("right").contentWindow.location.href = "/website/" + optional + "/?engine=" + general;
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="/medias/css/index.css" rel="stylesheet" type="text/css" />
+<title>自由度</title>
+</head>
+<body>
+<div id="indexheard">
+  <div class="indexheardlogo">
+    <div class="hl0">
+      <form action="/search/" method="post">
+        <div class="link2">
+          <input type="text" id="" name="q" value="">
+        </div>
+        <div class="link3">
+          <input class="okButton" type="submit" value="搜索" />
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="indexfame">
+  <form method="post" name="login">
+    <div class="indexfamel">
+      <div class="indexfamel01">登陆邮箱:</div>
+      <div class="indexfamel02">
+        <input type="text" id="username" name="username" value="{{user_name}}">
+      </div>
+      <div class="indexfamel03">密码:</div>
+      <div class="indexfamel04">
+        <input name="password" type="password" />
+      </div>
+      <div class="indexfamel05">
+        <div class="indexfamel051">
+          <input name="remember_me" type="checkbox" value="" />
+        </div>
+        <div class="indexfamel052">记住密码</div>
+      </div>
+      <div class="indexfamel06">
+        <div class="indexfamel061">
+          <div class="lR">
+            <div class="lR1"><img  src="/medias/img/index/ln1.jpg" border="0" /></div>
+           <!-- <div class="ln2"><a href="javascript:document.login.submit();" title="">登陆</a></div>-->
+			<div class="lnR"><input type="submit" value="登录" /></div>
+            <div class="ln3"><img  src="/medias/img/index/ln3.jpg" border="0" /></div>
+          </div>
+        </div>
+        <div class="indexfamel063">
+          <div class="ln">
+            <div class="ln1"><img  src="/medias/img/index/ln1.jpg" border="0" /></div>
+            <div class="ln2"><a href="/login/register/" >注册</a></div>
+            <div class="ln3"><img  src="/medias/img/index/ln3.jpg" border="0" /></div>
+          </div>
+        </div>
+        <div class="indexfamel062"><a href="javascript:gomisspw();" >找回密码</a></div>
+      </div>
+      <div class="indexfamel08">手机登陆</div>
+      <div class="indexfamel09">m.ziyoudu.com</div>
+    </div>
+    <div class="indexfamer">
+      <div class="indexfamer1">
+	    <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,19,0" width="602" height="152" >
+      <param name="movie" value="/medias/swf/logo.swf" />
+      <param name="wmode" value="transparent" />
+      <param name="quality" value="high" />
+      <param name="PLAY" value="false" />
+      <embed src="/medias/swf/logo.swf" width="602" height="152" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" wmode="transparent" play="false"></embed>
+    </object>
+
+	  </div>
+      <div>
+        <div class="indexfamer2">
+          <div class="indexfamer21">
+            <div align="left">自由度网站，尝试把你的诸多空间映射到网络，帮助你管理在不同坐标系下的关系和活动。在每个空间中，也许你是主导者，也许你是跟从者。不论是振臂一呼的俱乐部主席、协会会长、活动领导，还是乐的参予的响应者，在自由度网站都能够自如的沟通、分享、互动。</div>
+          </div>
+        </div>
+        <div class="indexfamer3"> <a href="/club/register/" ><img  src="/medias/img/index/heardindex08.jpg" border="0" /></a> </div>
+      </div>
+    </div>
+  </form>
+</div>
+</div>
+<div class="indexfoot">
+  <div class="indexfoot1"> Copyright 2008 自由度<br />
+    <a href="http://www.MIIBEIAN.GOV.CN" >京ICP证060207号</a> </div>
+  <div class="indexfoot2">　<span><a href="/privacy.html" target="_blank"  >隐私声明</a></span> <span><a href="/help.html" target="_blank" >帮助</a></span> <span><a href="javascript:addfavorite();">加入收藏</a></span> <span><a href="/aboutus.html" target="_blank" >联系我们</a></span> <span><a href="#" target="_blank" >BLOG</a></span> </div>
+</div>
+<script language="javascript" type="text/javascript">
+var regurl = "/login/register/";
+var regtarget = "";
+function goreg(){
+	if("_blank" == regtarget){
+		window.open(regurl);
+	}else{
+		window.location.href=regurl;
+	}
+}
+var misspwurl = "/login/misspw/";
+var misspwtarget = "";
+function gomisspw(){
+	var username = document.getElementById('username');
+	misspwurl += username.value + '/';
+	if("_blank" == regtarget){
+		window.open(misspwurl);
+	}else{
+		window.location.href=misspwurl;
+	}
+}
+</script>
+
+<script type="text/javascript">
+function addfavorite()
+{
+	if (document.all)
+	{
+		window.external.addFavorite(document.location.href,'自由度');
+	}
+	else if (window.sidebar)
+	{
+		window.sidebar.addPanel('自由度', document.location.href,'');
+	}
+} 
+</script>
+<script type="text/javascript">
+
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+
+</script>
+
+<script type="text/javascript">
+
+try {
+
+var pageTracker = _gat._getTracker("UA-9364526-1");
+
+pageTracker._setDomainName("ziyoudu.com");
+
+pageTracker._trackPageview();
+
+} catch(err) {}</script>
+</body>
+</html>

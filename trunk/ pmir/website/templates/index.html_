@@ -1,0 +1,49 @@
+<html>
+<head>
+<title>个性化元搜索 - Personalized Meta Search</title>
+<META content="text/html; charset=UTF-8" http-equiv=content-type>
+</head>
+<body>
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="bi">
+<tr>
+<td align="right" nowrap color="green"><font size="2" color="blue">欢迎<a href="/website/personal/">{{username}}</a>&nbsp;&nbsp;</font></td>
+</tr>
+</table>
+			<div align="center"><br><br><br>
+			<BR id=lgpd clear=all>
+				<IMG id=logo title="fight better" border=0 alt="pumas" src="/medias/fightbetter.gif"><BR>
+			<BR>
+			
+			<form name="form1" method="post" action="/website/control/" onsubmit="return checkempty();"> 
+			
+			
+			<div align="center"><input name="topic" type="text" value="" size="50" maxlength=127 ></div>	
+			<input name="from" type="hidden" value="index">
+			<input name="query" type="hidden" value="" >	
+			<div align="center"><input type="submit" name="submit" value="个性化元搜索""></div>
+			</form>
+			</div>
+			<br><br><br><br><br><br>
+	<br><br><br>
+	<p align="center"><font size="2">&copy;2009 - <a href = "http://ir.hit.edu.cn/">哈工大信息检索研究中心 - HIT CIR</a></font></p>
+</body>
+<script language="javascript">
+	function checkEnter()
+	{
+		if(event.keyCode==13)
+			checkempty();
+	}
+
+	function checkempty()
+	{
+		var input = document.form1.topic.value;
+		if (input=="")
+		{
+			alert("请输入查询！");
+			return false;
+		}
+		document.form1.query.value = input;
+		return true;
+	}
+</script>
+</html>

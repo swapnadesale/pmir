@@ -1,0 +1,327 @@
+UnicodeDecodeError at /pms/inputpage/
+'utf8' codec can't decode byte 0xb9 in position 633: unexpected code byteRequest Method: GET 
+Request URL: http://localhost:8000/pms/inputpage/?q=apple&page=baidugoogle 
+Exception Type: UnicodeDecodeError 
+Exception Value: 'utf8' codec can't decode byte 0xb9 in position 633: unexpected code byte 
+Exception Location: C:\Python25\lib\encodings\utf_8.py in decode, line 16 
+Python Executable: C:\Python25\python.exe 
+Python Version: 2.5.0 
+Python Path: ['E:\\STUDY\\Code\\ECLIPSE\\webframe\\pms', 'C:\\Windows\\system32\\python25.zip', 'C:\\Python25\\DLLs', 'C:\\Python25\\lib', 'C:\\Python25\\lib\\plat-win', 'C:\\Python25\\lib\\lib-tk', 'C:\\Python25', 'C:\\Python25\\lib\\site-packages'] 
+Server time: Thu, 19 Nov 2009 19:35:54 +0800 
+
+Unicode error hint
+The string that could not be encoded/decoded was: lue="??????
+
+Traceback Switch to copy-and-paste view
+C:\Python25\Lib\site-packages\django\core\handlers\base.py in get_response 
+1.            # Apply view middleware1.            for middleware_method in self._view_middleware:1.                response = middleware_method(request, callback, callback_args, callback_kwargs)1.                if response:1.                    return response1.1.            try:
+92.                response = callback(request, *callback_args, **callback_kwargs) ...1.            except Exception, e:1.                # If the view raised an exception, run it through exception1.                # middleware, and if the exception middleware returns a1.                # response, use that. Otherwise, reraise the exception.1.                for middleware_method in self._exception_middleware:1.                    response = middleware_method(request, e)
+? Local vars 
+Variable Value 
+callback <function inputpage at 0x02E10130> 
+callback_args () 
+callback_kwargs {} 
+e UnicodeDecodeError('utf8', '<html xmlns="http://www.w3.org/1999/xhtml">\n<head>\n<META content="text/html; charset=UTF-8" http-equiv=content-type>\n</head>\n<SCRIPT type="text/javaScript">\n var displaypage = "baidugoogle";\n function checkEnter()\n {\n if(event.keyCode==13) \n {\n setPage1();\n }\n }\n</SCRIPT>\n<body>\n<form name="inputform1" method="post" action="/pms/inputpage/" onkeydown = "return checkEnter()">\n\t<div align="center">\n <input name="query" type="text" value="{{q|safe}}" size="50" maxlength=150 >\n\t<input name="page" type="hidden" value="">\n\t<input type="submit" name="submit" onclick="setPage1()" value="\xb9\xc8\xb8\xe8\xb0\xd9\xb6\xc8\xcb\xd1\xcb\xf7">\n\t<input type="submit" name="submit1" onclick="setPage2()" value="\xb8\xf6\xd0\xd4\xbb\xaf\xcb\xd1\xcb\xf7">\n </div>\n</form>\n<script type="text/javascript">\n parent.document.getElementById(\'left\').contentWindow.location.href = "/pms/baiduresult/?q=" + document.inputform1.elements["query"].value;\n parent.document.getElementById(\'right\').contentWindow.location.href = "/pms/googleresult/?q=" + document.inputform1.elements["query"].value;\n</script>\n\n</body>\n</html>\n\n', 633, 634, 'unexpected code byte') 
+exc_info (<type 'exceptions.UnicodeDecodeError'>, UnicodeDecodeError('utf8', '<html xmlns="http://www.w3.org/1999/xhtml">\n<head>\n<META content="text/html; charset=UTF-8" http-equiv=content-type>\n</head>\n<SCRIPT type="text/javaScript">\n var displaypage = "baidugoogle";\n function checkEnter()\n {\n if(event.keyCode==13) \n {\n setPage1();\n }\n }\n</SCRIPT>\n<body>\n<form name="inputform1" method="post" action="/pms/inputpage/" onkeydown = "return checkEnter()">\n\t<div align="center">\n <input name="query" type="text" value="{{q|safe}}" size="50" maxlength=150 >\n\t<input name="page" type="hidden" value="">\n\t<input type="submit" name="submit" onclick="setPage1()" value="\xb9\xc8\xb8\xe8\xb0\xd9\xb6\xc8\xcb\xd1\xcb\xf7">\n\t<input type="submit" name="submit1" onclick="setPage2()" value="\xb8\xf6\xd0\xd4\xbb\xaf\xcb\xd1\xcb\xf7">\n </div>\n</form>\n<script type="text/javascript">\n parent.document.getElementById(\'left\').contentWindow.location.href = "/pms/baiduresult/?q=" + document.inputform1.elements["query"].value;\n parent.document.getElementById(\'right\').contentWindow.location.href = "/pms/googleresult/?q=" + document.inputform1.elements["query"].value;\n</script>\n\n</body>\n</html>\n\n', 633, 634, 'unexpected code byte'), <traceback object at 0x02E72468>) 
+exceptions <module 'django.core.exceptions' from 'C:\Python25\lib\site-packages\django\core\exceptions.pyc'> 
+middleware_method <bound method AuthenticationMiddleware.process_request of <django.contrib.auth.middleware.AuthenticationMiddleware object at 0x023B3FF0>> 
+receivers [(<function _rollback_on_exception at 0x02219DF0>, None)] 
+request <WSGIRequest GET:<QueryDict: {u'q': [u'apple'], u'page': [u'baidugoogle']}>, POST:<QueryDict: {}>, COOKIES:{'sessionid': 'daeb5f9902a77f17950dfcbc343a8fb2'}, META:{'ALLUSERSPROFILE': 'C:\\ProgramData', 'APPDATA': 'C:\\Users\\songwei\\AppData\\Roaming', 'COMMANDER_DRIVE': 'D:', 'COMMANDER_INI': 'C:\\Users\\songwei\\AppData\\Roaming\\GHISLER\\wincmd.ini', 'COMMANDER_PATH': 'D:\\Program Files\\totalcmd', 'COMMONPROGRAMFILES': 'C:\\Program Files\\Common Files', 'COMPUTERNAME': 'SONGWEI-PC', 'COMSPEC': 'C:\\Windows\\system32\\cmd.exe', 'CONTENT_LENGTH': '', 'CONTENT_TYPE': 'text/plain', 'DJANGO_SETTINGS_MODULE': 'pms.settings', 'FP_NO_HOST_CHECK': 'NO', 'GATEWAY_INTERFACE': 'CGI/1.1', 'HOMEDRIVE': 'C:', 'HOMEPATH': '\\Users\\songwei', 'HTTP_ACCEPT': 'image/jpeg, application/x-ms-application, image/gif, application/xaml+xml, image/pjpeg, application/x-ms-xbap, application/x-shockwave-flash, application/vnd.ms-excel, application/vnd.ms-powerpoint, application/msword, */*', 'HTTP_ACCEPT_ENCODING': 'gzip, deflate', 'HTTP_ACCEPT_LANGUAGE': 'zh-CN', 'HTTP_CONNECTION': 'Keep-Alive', 'HTTP_COOKIE': 'sessionid=daeb5f9902a77f17950dfcbc343a8fb2', 'HTTP_HOST': 'localhost:8000', 'HTTP_REFERER': 'http://localhost:8000/pms/control/', 'HTTP_USER_AGENT': 'Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1; Trident/4.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0)', 'LOCALAPPDATA': 'C:\\Users\\songwei\\AppData\\Local', 'LOGONSERVER': '\\\\SONGWEI-PC', 'NUMBER_OF_PROCESSORS': '2', 'OS': 'Windows_NT', 'PATH': 'C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;D:\\Program Files\\TortoiseSVN\\bin;C:\\Python25;C:\\Python25\\Scripts;D:\\Program Files\\MySQL\\MySQL Server 5.0\\bin;C:\\Program Files\\Common Files\\Thunder Network\\KanKan\\Codecs;D:\\Program Files\\Mendeley Desktop;D:\\Program Files\\', 'PATHEXT': '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC', 'PATH_INFO': u'/pms/inputpage/', 'PROCESSOR_ARCHITECTURE': 'x86', 'PROCESSOR_IDENTIFIER': 'x86 Family 6 Model 23 Stepping 10, GenuineIntel', 'PROCESSOR_LEVEL': '6', 'PROCESSOR_REVISION': '170a', 'PROGRAMDATA': 'C:\\ProgramData', 'PROGRAMFILES': 'C:\\Program Files', 'PROMPT': '$P$G', 'PSMODULEPATH': 'C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\', 'PUBLIC': 'C:\\Users\\Public', 'QUERY_STRING': 'q=apple&page=baidugoogle', 'REMOTE_ADDR': '127.0.0.1', 'REMOTE_HOST': '', 'REQUEST_METHOD': 'GET', 'RUN_MAIN': 'true', 'SCRIPT_NAME': u'', 'SERVER_NAME': 'songwei-PC', 'SERVER_PORT': '8000', 'SERVER_PROTOCOL': 'HTTP/1.1', 'SERVER_SOFTWARE': 'WSGIServer/0.1 Python/2.5', 'SESSIONNAME': 'Console', 'SYSTEMDRIVE': 'C:', 'SYSTEMROOT': 'C:\\Windows', 'TEMP': 'C:\\Users\\songwei\\AppData\\Local\\Temp', 'TMP': 'C:\\Users\\songwei\\AppData\\Local\\Temp', 'USERDOMAIN': 'songwei-PC', 'USERNAME': 'songwei', 'USERPROFILE': 'C:\\Users\\songwei', 'WINDIR': 'C:\\Windows', 'wsgi.errors': <open file '<stderr>', mode 'w' at 0x0124F0B0>, 'wsgi.file_wrapper': <class 'django.core.servers.basehttp.FileWrapper'>, 'wsgi.input': <socket._fileobject object at 0x023A5618>, 'wsgi.multiprocess': False, 'wsgi.multithread': True, 'wsgi.run_once': False, 'wsgi.url_scheme': 'http', 'wsgi.version': (1, 0)}> 
+resolver <RegexURLResolver pms.urls (None:None) ^/> 
+response None 
+self <django.core.handlers.wsgi.WSGIHandler object at 0x0235A7D0> 
+settings <django.conf.LazySettings object at 0x0170AA70> 
+urlconf 'pms.urls' 
+urlresolvers <module 'django.core.urlresolvers' from 'C:\Python25\lib\site-packages\django\core\urlresolvers.pyc'> 
+
+E:\STUDY\Code\ECLIPSE\webframe\pms\..\pms\website\views.py in inputpage 
+2.    saveQuery(query, name)2.    print "input query: ", query2.    print "username: ", name2.2.    query.replace(" ", "&nbsp;") #页面显示时会自动转会空格2.    print "page: ", page2.    if page == "baidugoogle":
+61.        return render_to_response("inputpage_baidugoogle.html", {"q": query}) ...2.    if page == "baidupir":2.        return render_to_response("inputpage_baidupir.html", {"q": query})2.    return render_to_response("inputpage.html", {"q": query})2. 2.def googleResult(request):2.    query = request.GET.get('q', '').encode("utf8")
+? Local vars 
+Variable Value 
+name u'test' 
+page 'baidugoogle' 
+query 'apple' 
+request <WSGIRequest GET:<QueryDict: {u'q': [u'apple'], u'page': [u'baidugoogle']}>, POST:<QueryDict: {}>, COOKIES:{'sessionid': 'daeb5f9902a77f17950dfcbc343a8fb2'}, META:{'ALLUSERSPROFILE': 'C:\\ProgramData', 'APPDATA': 'C:\\Users\\songwei\\AppData\\Roaming', 'COMMANDER_DRIVE': 'D:', 'COMMANDER_INI': 'C:\\Users\\songwei\\AppData\\Roaming\\GHISLER\\wincmd.ini', 'COMMANDER_PATH': 'D:\\Program Files\\totalcmd', 'COMMONPROGRAMFILES': 'C:\\Program Files\\Common Files', 'COMPUTERNAME': 'SONGWEI-PC', 'COMSPEC': 'C:\\Windows\\system32\\cmd.exe', 'CONTENT_LENGTH': '', 'CONTENT_TYPE': 'text/plain', 'DJANGO_SETTINGS_MODULE': 'pms.settings', 'FP_NO_HOST_CHECK': 'NO', 'GATEWAY_INTERFACE': 'CGI/1.1', 'HOMEDRIVE': 'C:', 'HOMEPATH': '\\Users\\songwei', 'HTTP_ACCEPT': 'image/jpeg, application/x-ms-application, image/gif, application/xaml+xml, image/pjpeg, application/x-ms-xbap, application/x-shockwave-flash, application/vnd.ms-excel, application/vnd.ms-powerpoint, application/msword, */*', 'HTTP_ACCEPT_ENCODING': 'gzip, deflate', 'HTTP_ACCEPT_LANGUAGE': 'zh-CN', 'HTTP_CONNECTION': 'Keep-Alive', 'HTTP_COOKIE': 'sessionid=daeb5f9902a77f17950dfcbc343a8fb2', 'HTTP_HOST': 'localhost:8000', 'HTTP_REFERER': 'http://localhost:8000/pms/control/', 'HTTP_USER_AGENT': 'Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1; Trident/4.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0)', 'LOCALAPPDATA': 'C:\\Users\\songwei\\AppData\\Local', 'LOGONSERVER': '\\\\SONGWEI-PC', 'NUMBER_OF_PROCESSORS': '2', 'OS': 'Windows_NT', 'PATH': 'C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;D:\\Program Files\\TortoiseSVN\\bin;C:\\Python25;C:\\Python25\\Scripts;D:\\Program Files\\MySQL\\MySQL Server 5.0\\bin;C:\\Program Files\\Common Files\\Thunder Network\\KanKan\\Codecs;D:\\Program Files\\Mendeley Desktop;D:\\Program Files\\', 'PATHEXT': '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC', 'PATH_INFO': u'/pms/inputpage/', 'PROCESSOR_ARCHITECTURE': 'x86', 'PROCESSOR_IDENTIFIER': 'x86 Family 6 Model 23 Stepping 10, GenuineIntel', 'PROCESSOR_LEVEL': '6', 'PROCESSOR_REVISION': '170a', 'PROGRAMDATA': 'C:\\ProgramData', 'PROGRAMFILES': 'C:\\Program Files', 'PROMPT': '$P$G', 'PSMODULEPATH': 'C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\', 'PUBLIC': 'C:\\Users\\Public', 'QUERY_STRING': 'q=apple&page=baidugoogle', 'REMOTE_ADDR': '127.0.0.1', 'REMOTE_HOST': '', 'REQUEST_METHOD': 'GET', 'RUN_MAIN': 'true', 'SCRIPT_NAME': u'', 'SERVER_NAME': 'songwei-PC', 'SERVER_PORT': '8000', 'SERVER_PROTOCOL': 'HTTP/1.1', 'SERVER_SOFTWARE': 'WSGIServer/0.1 Python/2.5', 'SESSIONNAME': 'Console', 'SYSTEMDRIVE': 'C:', 'SYSTEMROOT': 'C:\\Windows', 'TEMP': 'C:\\Users\\songwei\\AppData\\Local\\Temp', 'TMP': 'C:\\Users\\songwei\\AppData\\Local\\Temp', 'USERDOMAIN': 'songwei-PC', 'USERNAME': 'songwei', 'USERPROFILE': 'C:\\Users\\songwei', 'WINDIR': 'C:\\Windows', 'wsgi.errors': <open file '<stderr>', mode 'w' at 0x0124F0B0>, 'wsgi.file_wrapper': <class 'django.core.servers.basehttp.FileWrapper'>, 'wsgi.input': <socket._fileobject object at 0x023A5618>, 'wsgi.multiprocess': False, 'wsgi.multithread': True, 'wsgi.run_once': False, 'wsgi.url_scheme': 'http', 'wsgi.version': (1, 0)}> 
+
+C:\Python25\Lib\site-packages\django\shortcuts\__init__.py in render_to_response 
+3.3.def render_to_response(*args, **kwargs):3.    """3.    Returns a HttpResponse whose content is filled with the result of calling3.    django.template.loader.render_to_string() with the passed arguments.3.    """3.    httpresponse_kwargs = {'mimetype': kwargs.pop('mimetype', None)}
+20.    return HttpResponse(loader.render_to_string(*args, **kwargs), **httpresponse_kwargs) ...3.3.def redirect(to, *args, **kwargs):3.    """3.    Returns an HttpResponseRedirect to the apropriate URL for the arguments3.    passed.3.    
+? Local vars 
+Variable Value 
+args ('inputpage_baidugoogle.html', {'q': 'apple'}) 
+httpresponse_kwargs {'mimetype': None} 
+kwargs {} 
+
+C:\Python25\Lib\site-packages\django\template\loader.py in render_to_string 
+4.    get_template, or it may be a tuple to use select_template to find one of4.    the templates in the list. Returns a string.4.    """4.    dictionary = dictionary or {}4.    if isinstance(template_name, (list, tuple)):4.        t = select_template(template_name)4.    else:
+103.        t = get_template(template_name) ...4.    if context_instance:4.        context_instance.update(dictionary)4.    else:4.        context_instance = Context(dictionary)4.    return t.render(context_instance)4.
+? Local vars 
+Variable Value 
+context_instance None 
+dictionary {'q': 'apple'} 
+template_name 'inputpage_baidugoogle.html' 
+
+C:\Python25\Lib\site-packages\django\template\loader.py in get_template 
+5.    raise TemplateDoesNotExist, name5.5.def get_template(template_name):5.    """5.    Returns a compiled Template object for the given template name,5.    handling template inheritance recursively.5.    """
+81.    source, origin = find_template_source(template_name) ...5.    template = get_template_from_string(source, origin, template_name)5.    return template5.5.def get_template_from_string(source, origin=None, name=None):5.    """5.    Returns a compiled Template object for the given template code,
+? Local vars 
+Variable Value 
+template_name 'inputpage_baidugoogle.html' 
+
+C:\Python25\Lib\site-packages\django\template\loader.py in find_template_source 
+6.                import warnings6.                warnings.warn("Your TEMPLATE_LOADERS setting includes %r, but your Python installation doesn't support that type of template loading. Consider removing that line from TEMPLATE_LOADERS." % path)6.            else:6.                loaders.append(func)6.        template_source_loaders = tuple(loaders)6.    for loader in template_source_loaders:6.        try:
+70.            source, display_name = loader(name, dirs) ...6.            return (source, make_origin(display_name, loader, name, dirs))6.        except TemplateDoesNotExist:6.            pass6.    raise TemplateDoesNotExist, name6.6.def get_template(template_name):
+? Local vars 
+Variable Value 
+dirs None 
+loader <function load_template_source at 0x02E66B70> 
+name 'inputpage_baidugoogle.html' 
+
+C:\Python25\Lib\site-packages\django\template\loaders\app_directories.py in load_template_source 
+7.        except ValueError:7.            # The joined path was located outside of template_dir.7.            pass7.7.def load_template_source(template_name, template_dirs=None):7.    for filepath in get_template_sources(template_name, template_dirs):7.        try:
+51.            return (open(filepath).read().decode(settings.FILE_CHARSET), filepath) ...7.        except IOError:7.            pass7.    raise TemplateDoesNotExist, template_name7.load_template_source.is_usable = True
+? Local vars 
+Variable Value 
+filepath u'e:\\study\\code\\eclipse\\webframe\\pms\\website\\templates\\inputpage_baidugoogle.html' 
+template_dirs None 
+template_name 'inputpage_baidugoogle.html' 
+
+C:\Python25\lib\encodings\utf_8.py in decode 
+8.import codecs8.8.### Codec APIs8.8.encode = codecs.utf_8_encode8.8.def decode(input, errors='strict'):
+16.    return codecs.utf_8_decode(input, errors, True) ...8.8.class IncrementalEncoder(codecs.IncrementalEncoder):8.    def encode(self, input, final=False):8.        return codecs.utf_8_encode(input, self.errors)[0]8.8.class IncrementalDecoder(codecs.BufferedIncrementalDecoder):
+? Local vars 
+Variable Value 
+errors 'strict' 
+input '<html xmlns="http://www.w3.org/1999/xhtml">\n<head>\n<META content="text/html; charset=UTF-8" http-equiv=content-type>\n</head>\n<SCRIPT type="text/javaScript">\n var displaypage = "baidugoogle";\n function checkEnter()\n {\n if(event.keyCode==13) \n {\n setPage1();\n }\n }\n</SCRIPT>\n<body>\n<form name="inputform1" method="post" action="/pms/inputpage/" onkeydown = "return checkEnter()">\n\t<div align="center">\n <input name="query" type="text" value="{{q|safe}}" size="50" maxlength=150 >\n\t<input name="page" type="hidden" value="">\n\t<input type="submit" name="submit" onclick="setPage1()" value="\xb9\xc8\xb8\xe8\xb0\xd9\xb6\xc8\xcb\xd1\xcb\xf7">\n\t<input type="submit" name="submit1" onclick="setPage2()" value="\xb8\xf6\xd0\xd4\xbb\xaf\xcb\xd1\xcb\xf7">\n </div>\n</form>\n<script type="text/javascript">\n parent.document.getElementById(\'left\').contentWindow.location.href = "/pms/baiduresult/?q=" + document.inputform1.elements["query"].value;\n parent.document.getElementById(\'right\').contentWindow.location.href = "/pms/googleresult/?q=" + document.inputform1.elements["query"].value;\n</script>\n\n</body>\n</html>\n\n' 
+
+    Environment:
+
+Request Method: GET
+Request URL: http://localhost:8000/pms/inputpage/?q=apple&page=baidugoogle
+Django Version: 1.1.1
+Python Version: 2.5.0
+Installed Applications:
+['django.contrib.auth',
+ 'django.contrib.contenttypes',
+ 'django.contrib.sessions',
+ 'django.contrib.sites',
+ 'pms.website',
+ 'pms.login']
+Installed Middleware:
+('django.middleware.common.CommonMiddleware',
+ 'django.contrib.sessions.middleware.SessionMiddleware',
+ 'django.contrib.auth.middleware.AuthenticationMiddleware')
+
+
+Traceback:
+File "C:\Python25\Lib\site-packages\django\core\handlers\base.py" in get_response
+  92.                 response = callback(request, *callback_args, **callback_kwargs)
+File "E:\STUDY\Code\ECLIPSE\webframe\pms\..\pms\website\views.py" in inputpage
+  61.         return render_to_response("inputpage_baidugoogle.html", {"q": query})
+File "C:\Python25\Lib\site-packages\django\shortcuts\__init__.py" in render_to_response
+  20.     return HttpResponse(loader.render_to_string(*args, **kwargs), **httpresponse_kwargs)
+File "C:\Python25\Lib\site-packages\django\template\loader.py" in render_to_string
+  103.         t = get_template(template_name)
+File "C:\Python25\Lib\site-packages\django\template\loader.py" in get_template
+  81.     source, origin = find_template_source(template_name)
+File "C:\Python25\Lib\site-packages\django\template\loader.py" in find_template_source
+  70.             source, display_name = loader(name, dirs)
+File "C:\Python25\Lib\site-packages\django\template\loaders\app_directories.py" in load_template_source
+  51.             return (open(filepath).read().decode(settings.FILE_CHARSET), filepath)
+File "C:\Python25\lib\encodings\utf_8.py" in decode
+  16.     return codecs.utf_8_decode(input, errors, True)
+
+Exception Type: UnicodeDecodeError at /pms/inputpage/
+Exception Value: 'utf8' codec can't decode byte 0xb9 in position 633: unexpected code byte
+ 
+
+ 
+Request information
+GET
+Variable Value 
+q u'apple' 
+page u'baidugoogle' 
+
+POST
+No POST data
+
+FILES
+No FILES data
+
+COOKIES
+Variable Value 
+sessionid 'daeb5f9902a77f17950dfcbc343a8fb2' 
+
+META
+Variable Value 
+ALLUSERSPROFILE 'C:\\ProgramData' 
+APPDATA 'C:\\Users\\songwei\\AppData\\Roaming' 
+COMMANDER_DRIVE 'D:' 
+COMMANDER_INI 'C:\\Users\\songwei\\AppData\\Roaming\\GHISLER\\wincmd.ini' 
+COMMANDER_PATH 'D:\\Program Files\\totalcmd' 
+COMMONPROGRAMFILES 'C:\\Program Files\\Common Files' 
+COMPUTERNAME 'SONGWEI-PC' 
+COMSPEC 'C:\\Windows\\system32\\cmd.exe' 
+CONTENT_LENGTH '' 
+CONTENT_TYPE 'text/plain' 
+DJANGO_SETTINGS_MODULE 'pms.settings' 
+FP_NO_HOST_CHECK 'NO' 
+GATEWAY_INTERFACE 'CGI/1.1' 
+HOMEDRIVE 'C:' 
+HOMEPATH '\\Users\\songwei' 
+HTTP_ACCEPT 'image/jpeg, application/x-ms-application, image/gif, application/xaml+xml, image/pjpeg, application/x-ms-xbap, application/x-shockwave-flash, application/vnd.ms-excel, application/vnd.ms-powerpoint, application/msword, */*' 
+HTTP_ACCEPT_ENCODING 'gzip, deflate' 
+HTTP_ACCEPT_LANGUAGE 'zh-CN' 
+HTTP_CONNECTION 'Keep-Alive' 
+HTTP_COOKIE 'sessionid=daeb5f9902a77f17950dfcbc343a8fb2' 
+HTTP_HOST 'localhost:8000' 
+HTTP_REFERER 'http://localhost:8000/pms/control/' 
+HTTP_USER_AGENT 'Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1; Trident/4.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0)' 
+LOCALAPPDATA 'C:\\Users\\songwei\\AppData\\Local' 
+LOGONSERVER '\\\\SONGWEI-PC' 
+NUMBER_OF_PROCESSORS '2' 
+OS 'Windows_NT' 
+PATH 'C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;D:\\Program Files\\TortoiseSVN\\bin;C:\\Python25;C:\\Python25\\Scripts;D:\\Program Files\\MySQL\\MySQL Server 5.0\\bin;C:\\Program Files\\Common Files\\Thunder Network\\KanKan\\Codecs;D:\\Program Files\\Mendeley Desktop;D:\\Program Files\\' 
+PATHEXT '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC' 
+PATH_INFO u'/pms/inputpage/' 
+PROCESSOR_ARCHITECTURE 'x86' 
+PROCESSOR_IDENTIFIER 'x86 Family 6 Model 23 Stepping 10, GenuineIntel' 
+PROCESSOR_LEVEL '6' 
+PROCESSOR_REVISION '170a' 
+PROGRAMDATA 'C:\\ProgramData' 
+PROGRAMFILES 'C:\\Program Files' 
+PROMPT '$P$G' 
+PSMODULEPATH 'C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\' 
+PUBLIC 'C:\\Users\\Public' 
+QUERY_STRING 'q=apple&page=baidugoogle' 
+REMOTE_ADDR '127.0.0.1' 
+REMOTE_HOST '' 
+REQUEST_METHOD 'GET' 
+RUN_MAIN 'true' 
+SCRIPT_NAME u'' 
+SERVER_NAME 'songwei-PC' 
+SERVER_PORT '8000' 
+SERVER_PROTOCOL 'HTTP/1.1' 
+SERVER_SOFTWARE 'WSGIServer/0.1 Python/2.5' 
+SESSIONNAME 'Console' 
+SYSTEMDRIVE 'C:' 
+SYSTEMROOT 'C:\\Windows' 
+TEMP 'C:\\Users\\songwei\\AppData\\Local\\Temp' 
+TMP 'C:\\Users\\songwei\\AppData\\Local\\Temp' 
+USERDOMAIN 'songwei-PC' 
+USERNAME 'songwei' 
+USERPROFILE 'C:\\Users\\songwei' 
+WINDIR 'C:\\Windows' 
+wsgi.errors <open file '<stderr>', mode 'w' at 0x0124F0B0> 
+wsgi.file_wrapper <class 'django.core.servers.basehttp.FileWrapper'> 
+wsgi.input <socket._fileobject object at 0x023A5618> 
+wsgi.multiprocess False 
+wsgi.multithread True 
+wsgi.run_once False 
+wsgi.url_scheme 'http' 
+wsgi.version (1, 0) 
+
+Settings
+Using settings module pms.settings
+Setting Value 
+ABSOLUTE_URL_OVERRIDES {} 
+ADMINS () 
+ADMIN_FOR () 
+ADMIN_MEDIA_PREFIX '/media/' 
+ALLOWED_INCLUDE_ROOTS () 
+APPEND_SLASH True 
+AUTHENTICATION_BACKENDS ('django.contrib.auth.backends.ModelBackend',) 
+BANNED_IPS () 
+CACHE_BACKEND 'locmem://' 
+CACHE_MIDDLEWARE_KEY_PREFIX '' 
+CACHE_MIDDLEWARE_SECONDS 600 
+COMMENTS_ALLOW_PROFANITIES False 
+COMMENTS_BANNED_USERS_GROUP None 
+COMMENTS_FIRST_FEW 0 
+COMMENTS_MODERATORS_GROUP None 
+COMMENTS_SKETCHY_USERS_GROUP None 
+DATABASE_ENGINE 'mysql' 
+DATABASE_HOST '' 
+DATABASE_NAME 'pms' 
+DATABASE_OPTIONS {} 
+DATABASE_PASSWORD '********************' 
+DATABASE_PORT '' 
+DATABASE_USER 'wsong' 
+DATETIME_FORMAT 'N j, Y, P' 
+DATE_FORMAT 'N j, Y' 
+DEBUG True 
+DEBUG_PROPAGATE_EXCEPTIONS False 
+DEFAULT_CHARSET 'utf-8' 
+DEFAULT_CONTENT_TYPE 'text/html' 
+DEFAULT_FILE_STORAGE 'django.core.files.storage.FileSystemStorage' 
+DEFAULT_FROM_EMAIL 'webmaster@localhost' 
+DEFAULT_INDEX_TABLESPACE '' 
+DEFAULT_TABLESPACE '' 
+DISALLOWED_USER_AGENTS () 
+EMAIL_HOST 'localhost' 
+EMAIL_HOST_PASSWORD '********************' 
+EMAIL_HOST_USER '' 
+EMAIL_PORT 25 
+EMAIL_SUBJECT_PREFIX '[Django] ' 
+EMAIL_USE_TLS False 
+FILE_CHARSET 'utf-8' 
+FILE_UPLOAD_HANDLERS ('django.core.files.uploadhandler.MemoryFileUploadHandler', 'django.core.files.uploadhandler.TemporaryFileUploadHandler') 
+FILE_UPLOAD_MAX_MEMORY_SIZE 2621440 
+FILE_UPLOAD_PERMISSIONS None 
+FILE_UPLOAD_TEMP_DIR None 
+FIXTURE_DIRS () 
+FORCE_SCRIPT_NAME None 
+IGNORABLE_404_ENDS ('mail.pl', 'mailform.pl', 'mail.cgi', 'mailform.cgi', 'favicon.ico', '.php') 
+IGNORABLE_404_STARTS ('/cgi-bin/', '/_vti_bin', '/_vti_inf') 
+INSTALLED_APPS ['django.contrib.auth', 'django.contrib.contenttypes', 'django.contrib.sessions', 'django.contrib.sites', 'pms.website', 'pms.login'] 
+INTERNAL_IPS () 
+LANGUAGES (('ar', 'Arabic'), ('bn', 'Bengali'), ('bg', 'Bulgarian'), ('ca', 'Catalan'), ('cs', 'Czech'), ('cy', 'Welsh'), ('da', 'Danish'), ('de', 'German'), ('el', 'Greek'), ('en', 'English'), ('es', 'Spanish'), ('et', 'Estonian'), ('es-ar', 'Argentinean Spanish'), ('eu', 'Basque'), ('fa', 'Persian'), ('fi', 'Finnish'), ('fr', 'French'), ('ga', 'Irish'), ('gl', 'Galician'), ('hu', 'Hungarian'), ('he', 'Hebrew'), ('hi', 'Hindi'), ('hr', 'Croatian'), ('is', 'Icelandic'), ('it', 'Italian'), ('ja', 'Japanese'), ('ka', 'Georgian'), ('ko', 'Korean'), ('km', 'Khmer'), ('kn', 'Kannada'), ('lv', 'Latvian'), ('lt', 'Lithuanian'), ('mk', 'Macedonian'), ('nl', 'Dutch'), ('no', 'Norwegian'), ('pl', 'Polish'), ('pt', 'Portuguese'), ('pt-br', 'Brazilian Portuguese'), ('ro', 'Romanian'), ('ru', 'Russian'), ('sk', 'Slovak'), ('sl', 'Slovenian'), ('sr', 'Serbian'), ('sv', 'Swedish'), ('ta', 'Tamil'), ('te', 'Telugu'), ('th', 'Thai'), ('tr', 'Turkish'), ('uk', 'Ukrainian'), ('zh-cn', 'Simplified Chinese'), ('zh-tw', 'Traditional Chinese')) 
+LANGUAGES_BIDI ('he', 'ar', 'fa') 
+LANGUAGE_CODE 'en-us' 
+LANGUAGE_COOKIE_NAME 'django_language' 
+LOCALE_PATHS () 
+LOGIN_REDIRECT_URL '/accounts/profile/' 
+LOGIN_URL '/accounts/login/' 
+LOGOUT_URL '/accounts/logout/' 
+MANAGERS () 
+MEDIA_ROOT '' 
+MEDIA_URL '' 
+MIDDLEWARE_CLASSES ('django.middleware.common.CommonMiddleware', 'django.contrib.sessions.middleware.SessionMiddleware', 'django.contrib.auth.middleware.AuthenticationMiddleware') 
+MONTH_DAY_FORMAT 'F j' 
+PASSWORD_RESET_TIMEOUT_DAYS '********************' 
+PREPEND_WWW False 
+PROFANITIES_LIST '********************' 
+ROOT_URLCONF 'pms.urls' 
+SECRET_KEY '********************' 
+SEND_BROKEN_LINK_EMAILS False 
+SERVER_EMAIL 'root@localhost' 
+SESSION_COOKIE_AGE 1209600 
+SESSION_COOKIE_DOMAIN None 
+SESSION_COOKIE_NAME 'sessionid' 
+SESSION_COOKIE_PATH '/' 
+SESSION_COOKIE_SECURE False 
+SESSION_ENGINE 'django.contrib.sessions.backends.db' 
+SESSION_EXPIRE_AT_BROWSER_CLOSE False 
+SESSION_FILE_PATH None 
+SESSION_SAVE_EVERY_REQUEST False 
+SETTINGS_MODULE 'pms.settings' 
+SITE_ID 1 
+TEMPLATE_CONTEXT_PROCESSORS ('django.core.context_processors.auth', 'django.core.context_processors.debug', 'django.core.context_processors.i18n', 'django.core.context_processors.media') 
+TEMPLATE_DEBUG True 
+TEMPLATE_DIRS ('./templates',) 
+TEMPLATE_LOADERS ('django.template.loaders.filesystem.load_template_source', 'django.template.loaders.app_directories.load_template_source') 
+TEMPLATE_STRING_IF_INVALID '' 
+TEST_DATABASE_CHARSET None 
+TEST_DATABASE_COLLATION None 
+TEST_DATABASE_NAME None 
+TEST_RUNNER 'django.test.simple.run_tests' 
+TIME_FORMAT 'P' 
+TIME_ZONE 'America/Chicago' 
+TRANSACTIONS_MANAGED False 
+URL_VALIDATOR_USER_AGENT 'Django/1.1.1 (http://www.djangoproject.com)' 
+USE_ETAGS False 
+USE_I18N True 
+YEAR_MONTH_FORMAT 'F Y' 
+
+You're seeing this error because you have DEBUG = True in your Django settings file. Change that to False, and Django will display a standard 500 page. 
